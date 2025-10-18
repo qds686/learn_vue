@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in names">{{ item }}</li>
+    </ul>
+
+    <button @click="changeArray">修改数组</button>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          names: ["abc", "cba", "nba"]
+        }
+      },
+
+      methods: {
+        changeArray() {
+          // 1.直接将数组修改为一个"性能的数组"
+          // this.names = [ "hezi", "kobe"];
+
+          // 2.通过一些数组方法，修改数组中的元素，数据也会改变
+          // push/pop/shift/unshift/splice/sort/reverse
+          // this.names.push("hezi");
+          // this.names.pop();
+
+          // 3.不修改原数组的方法是不能使原数组发生改变，需要重新赋值才能改变
+          const newNames = this.names.map(item => item + "hezi");
+          this.names = newNames;
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

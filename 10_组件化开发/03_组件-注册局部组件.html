@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{ message }}</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const MyTitle = {
+      template: `
+        <h1>
+          <slot></slot>  
+        </h1>
+      `
+    };
+
+    const MyAuthor = {
+      template: `
+        <p>
+          Author: <slot></slot>  
+        </p>
+      `
+    };
+
+    const MyContent = {
+      template: `
+        <p>
+          <slot></slot>
+        </p>
+      `
+    };
+
+    /* 
+    组件实例；每个组件都有自己的 "组件实例"
+      ● 一个应用中所有的组件都共享一个应用实例
+      ● 无论是根组件还是应用内其他的组件，配置选项、组件行为都是一样的
+      ● 组件实例有一些内置的属性 data/props/components/methods...
+    */
+
+    /* 
+      1.在使用 <script setup> 的单文件组件中，导入的组件可以直接在模板中使用，无需注册：
+      2.如果没有使用 <script setup>，则需要使用 components 选项来显式注册
+      3.局部注册的组件在后代组件中不可用
+    */
+    const App = {
+      components: {
+        MyTitle,
+        MyAuthor,
+        MyContent
+      },
+      data() {
+        return {
+          title: 'This is a TITLE',
+          author: 'hezi',
+          content: 'This is a CONTENT'
+        }
+      },
+      template: `
+        <my-title>{{ title }}</my-title>
+        <my-author>{{ author }}</my-author>
+        <my-content>{{ content }}</my-content>
+      `
+    };
+
+    const app = Vue.createApp(App);
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

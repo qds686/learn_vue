@@ -1,0 +1,18 @@
+import { createApp } from 'vue';
+// import App from './01_组件的通信-父传子/App.vue';
+// import App from './02_组件的通信-子传父/App.vue';
+// import App from './03_组件通信-案例练习/App.vue';
+// import App from './04_组件插槽-基本使用/App.vue';
+// import App from './05_组件插槽-具名插槽/App.vue';
+// import App from './06_组件插槽-作用域插槽/App.vue';
+// import App from './07_Provide和Inject/App.vue';
+// import App from './08_事件总线/App.vue';
+// import App from './09_组件的生命周期/App.vue';
+// import App from './10_ref获取元素组件/App.vue';
+// import App from './11_动态组件/App.vue';
+// import App from './12_keep-alive/App.vue';
+// import App from './13_异步组件的使用/App.vue';
+// import App from './14_组件的v-model/App.vue';
+import App from './15_组件的混入Mixin/App.vue';
+
+createApp(App).mount('#app');

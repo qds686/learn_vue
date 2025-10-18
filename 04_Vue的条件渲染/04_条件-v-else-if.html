@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+      控制元素的显示隐藏
+      v-if 的原理是：
+        + 值是false，元素根本不会进行渲染（页面中不具备这个元素）
+        + 即便之前已经渲染了此元素，设置false，元素也会被移除掉！只有值是true的情况下，元素才会被渲染！
+
+      初步总结：
+        + v-show只是控制display样式的改变，元素肯定会渲染出来；
+        + v-if是基于控制元素的渲染和销毁，来控制显示隐藏的！
+        + 所以真实项目中，一般情况下，只需要控制一次显示/一次的切换，我们使用v-if更合适
+          + 尤其是最开始状态是false，我们连渲染都不需要
+        + 但对于需要频繁进行切换的操作（例如选项卡），明显使用v-show性能更好，使用v-if总是创建元素和销毁元素，性能消耗大！
+    -->
+    <h1 v-if="score > 90">优秀</h1>
+    <h2 v-if="score > 80">良好</h2>
+    <h3 v-else-if="score >= 60">及格</h3>
+    <h4 v-else>不及格</h4>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          score: 40
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

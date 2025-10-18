@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2 v-pre>{{ message }}</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    // v-pre用于跳过元素和它的子元素的编译过程，显示原始的mustache标签
+    const app = Vue.createApp({
+      data: function () {
+        return {
+          message: "Hello Vue"
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

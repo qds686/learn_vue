@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+    默认v-model绑定的是input事件，每次输入的时候就会将最新的值和绑定的属性进行同步 
+    加上lazy修饰符，绑定的事件切换为change事件，只有在提交(回车、鼠标失去焦点)才会触发
+    -->
+    <input type="text" v-model.lazy="message">
+    <h2>{{ message }}</h2>
+    <hr>
+
+    <!-- number：自动将内容转换成数字 -->
+    <!-- 默认输入展示的是String类型，加上Number展示的是Number类型 -->
+    <input type="text" v-model.number="counter">
+    <h2>counter: {{ counter }}-{{ typeof counter}}</h2>
+    <hr>
+
+    <!-- trim：去除首尾的空格 -->
+    <input type="text" v-model.trim="content">
+    <h2>content：{{ content }}</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: "Hello Vue",
+          counter: 0,
+          content: ""
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

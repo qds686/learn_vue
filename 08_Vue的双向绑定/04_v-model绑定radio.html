@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+      单选框：必须要加name属性才能选单个，如果使用了v-model就不需要加name
+    -->
+    <div class="gender">
+      <label for="male">
+        <input type="radio" id="male" v-model="gender" value="male" />男
+      </label>
+      <label for="female">
+        <input type="radio" id="female" v-model="gender" value="female" />女
+      </label>
+      <h2>性别：{{ gender }}</h2>
+    </div>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          // 默认选中
+          gender: "female"
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

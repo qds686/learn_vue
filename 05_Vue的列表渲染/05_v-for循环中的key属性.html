@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <!-- 
+        key 一般是id 
+          + key属性主要用在Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes
+          + 使用key时，会基于key的变化重新排列元素顺序，并且移除或销毁key不存在的元素
+          + 不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法
+        虚拟DOM的作用：template -> 虚拟DOM -> 可以做跨平台 
+          + 真实DOM渲染在浏览器中、移动端的button或者控件等、桌面端的一些控件、VR设备
+        虚拟DOM的作用：diff算法
+          + 
+      -->
+      <li v-for="item in letters" :key="item">{{ item }}</li>
+    </ul>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          letters: ["a", "b", "c", "d", "e"]
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

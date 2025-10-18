@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{ message }}</h2>
+    <button @click="changeMessage">修改message</button>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: "Hello Vue"
+        }
+      },
+      methods: {
+        changeMessage() {
+          this.message = "你好，盒子";
+        }
+      },
+      // 生命周期的回调函数：当前的组件被创建时自动执行
+      // 一般在该函数中进行网络请求
+      created() {
+        // 第一个参数：要侦听的源 第二个参数：侦听的回调函数callback  第三个参数：配置选项deep、immediate
+        this.$watch("message", (newValue, oldValue) => {
+          // 侦听到message改变： 你好，盒子 Hello Vue
+          console.log('侦听到message改变：', newValue, oldValue);
+        });
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

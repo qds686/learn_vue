@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    根元素：是一个HTML元素
+      ● createApp 执行创建Vue应用实例时，需要一个 HTML 根元素
+      ● <div id="app"></div>
+    -->
+  <div id="app">
+    <h2>{{ message }}</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    /* 
+      Vue 组件化的核心是组件系统
+        ● Vue 利用 ES 模块化构建了 Vue 组件系统
+
+      组件化：抽象成小型的，独立的，可预先定义配置的，可复用的组件
+      1. 页面的构成拆分成一个一个的小单元
+      2. 独立开发
+      3. 每一个小单元可以先定义好，在需要看的时候导入使用
+      4. 小单元可以接收一些在使用的时候需要的一些配置
+      5. 小单元可以在多个地方使用
+        ● 可复用性要适当考量，有的组件不需要复用
+        ● 可配置性越高，功能性就越强
+    */
+
+    /* 
+    App组件(根组件)：本质就是一个对象 {}
+      ● createApp 执行的时候需要一个根组件createApp({})
+      ● 根组件是Vue渲染的起点
+    根组件实例：执行mount方法返回的是根组件实例
+      ● vm = app.mount('#app')
+    */
+    const App = {
+      data() {
+        return {
+          message: "Hello Vue"
+        }
+      }
+    };
+
+    /* 
+      应用实例：执行createApp函数返回一个 “应用实例”
+        ● 主要用来注册全局组件
+        ● 实例上暴露了很多方法，component、directive、filter、use
+        ● 执行这些方法“大多数”都返回 createApp 创建出来的应用实例，可以链式调用
+    */
+    const app = Vue.createApp(App);
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

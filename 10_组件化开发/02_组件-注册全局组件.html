@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- 使用组件 -->
+    <my-title></my-title>
+    <my-title></my-title>
+    <my-title></my-title>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+
+
+    const App = {};
+
+    const myTitle = {
+      data() {
+        return {
+          title: 'I LOVE VUE'
+        }
+      },
+      template: `<h1 v-to-lower-case>{{ title }}</h1>`
+    };
+
+    const toLowerCase = {
+      mounted(el) {
+        el.addEventListener('click', function () {
+          this.innerText = this.innerText.toLowerCase();
+        }, false);
+      }
+    };
+
+    const app = Vue.createApp(App);
+    /* 
+      1.必须在挂载前注册，否则 Vue 会找不到组件
+      2.命名规范
+        + kebab-case：在模板中使用 <my-component>
+        + PascalCase：在 JS 中注册 app.component('MyComponent', {...})
+        注意：HTML 标签不区分大小写，所以推荐在模板中使用 kebab-case
+      3.使用标准闭合标签，单标签会解析错误，只解析一次组件
+      4.Vue3中全局组件只能在当前应用实例上使用
+      5.执行应用实例上暴露的方法，大多数都可以进行链式调用
+      6.性能问题
+        + 全局注册，但并没有被使用的组件无法在生产打包时被自动移除(tree shaking)
+        + 依赖不明确，维护性难
+    */
+    app.component('MyTitle', myTitle).directive('to-lower-case', toLowerCase);
+    app.mount('#app');
+  </script>
+</body>
+
+</html>

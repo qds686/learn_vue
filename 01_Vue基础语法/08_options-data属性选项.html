@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <button @click="changeMessage">改变message</button>
+  </div>
+
+  <script src="lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      //=>data属性是一个函数，并且该函数需要返回一个对象
+      // 1.在Vue2.x的时候，也可以传入一个对象
+      // 2.在Vue3.x的时候，必须传入一个函数，否则就会直接在浏览器中报错
+      data: function () {
+        return {
+          message: "Hello World"
+        }
+      },
+      methods: {
+        changeMessage: function () {
+          this.message = "你好，世界"
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

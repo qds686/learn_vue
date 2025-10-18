@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 这个指令和CSS规则[v-cloak]{display:none} 一起使用，可以隐藏未编译的mustache标签直到组件实例准备完毕-->
+    <h2 v-cloak>{{ message }}</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data: function () {
+        return {
+          message: "Hello Vue"
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

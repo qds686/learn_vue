@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      width: 600px;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+      v-bind用于绑定一个或多个属性值，或者向另一个组件传递props值 
+      用法：v-bind:xx="xx"
+      :xx="xx" 语法糖
+    -->
+
+    <!-- 切换图片 -->
+    <div>
+      <button @click="switchImage">切换图片</button>
+    </div>
+
+    <!-- 1.绑定img的src属性 -->
+    <img v-bind:src="showImgSrc" alt="">
+
+    <!-- 2.绑定a的href属性 -->
+    <a v-bind:href="href">百度一下</a>
+
+
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data: function () {
+        return {
+          message: "Hello Vue",
+          imgSrc1: "./img/1.jpg",
+          imgSrc2: "./img/2.webp",
+          href: "http://www.baidu.com",
+          showImgSrc: "./img/1.jpg"
+        }
+      },
+
+      methods: {
+        switchImage() {
+          this.showImgSrc = this.showImgSrc === this.imgSrc1 ? this.imgSrc2 : this.imgSrc1;
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

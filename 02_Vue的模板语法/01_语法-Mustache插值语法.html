@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.基本使用，不同类型的值渲染的结果 -->
+    <!-- number/string/boolean直接渲染（写啥就渲染啥） -->
+    <h2>{{ counter }}-{{ message }}-{{isTrue}}</h2>
+
+    <!-- null/undefined渲染的是空 -->
+    <h2>{{ elem }}</h2>
+
+    <!-- Symbol/BigInt都是把值变为字符串，再进行渲染的 -->
+    <h2>{{ sym }}-{{ bInt }}</h2>
+
+    <!-- 普通对象/数组对象：是基于JSON.strngify(...)把其变为JSON字符串 -->
+    <h2>{{ infos }}-{{ ArrInfo }}</h2>
+
+    <!-- 正则、日期等剩下的对象，基本上都是基于String(...)处理的 -->
+    <h2>{{ reg }}-{{ date }}</h2>
+
+    <!-- 2.表达式 -->
+    <h2 :title="counter*2">计数双倍：{{ counter*2 }}</h2>
+    <h2>展示信息：{{ info.split(" ") }}</h2>
+
+    <!-- 3.三元运算符 -->
+    <h2>{{ age >= 18 ? "成年人" : "未成年人" }}</h2>
+
+    <!-- 4.不能定义语句 -->
+    <!-- <h2>{{ const name = "hezi"}}</h2> -->
+
+    <!-- 5.调用methods中的函数 -->
+    <h2>{{ formateDate() }}</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    /* 
+    Vue的模板编译：
+      + 开发者写的template，经过底层分析把 HTML字符串转换成AST树
+      + 利用AST树把 表达式/自定义属性/指令等全部转化成原生的HTML
+      + 把原生的HTML生成虚拟DOM树，对比新老节点是否有区别
+      + 如果有区别：最后解析真实DOM，渲染页面，反之没有区别则不进行解析DOM和渲染
+    */
+    const app = Vue.createApp({
+      data: function () {
+        return {
+          message: "Hello Vue",
+          counter: 1,
+          info: "my name is hezi",
+          age: 20,
+          elem: null,
+          isTrue: true,
+          sym: Symbol('a'),
+          bInt: 10n,
+          infos: {
+            name: 'hezi'
+          },
+          ArrInfo: [{ name: 'hezi' }],
+          reg: /d/,
+          date: new Date()
+        }
+      },
+
+      methods: {
+        formateDate: function () {
+          return "2025-3-26"
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{ message }}</h2>
+    <!-- 把所有的内容（包含HTML标签字符串），都当做普通文本进行渲染，类似于innerText或者小胡子语法 -->
+    <!-- v-text：用于更新元素的 textContent -->
+    <h2 v-text="message"></h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data: function () {
+        return {
+          message: "Hello Vue"
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>

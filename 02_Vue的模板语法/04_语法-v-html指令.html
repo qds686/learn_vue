@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2 v-html="content"></h2>
+    <!-- 
+      插值不会解析HTML 因为插值是JS表达式，没有对DOM的操作
+      -> <p>This is a title</p> 
+
+      1.不要试图用v-html做子模板，Vue本身有一个底层的模板编译系统，而不是直接使用字符串来渲染的
+        + 子模板应该放到子组件中，让模板的重用和组合更强大
+      2.不要把用户提供的内容作为v-html的插值，这种插值容易导致XSS攻击
+        + v-html动态的渲染HTML，使用innerHTML，innerHTML会造成XSS攻击
+    -->
+    <h2>{{ '<p>' + title + '</p>'}}</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data: function () {
+        return {
+          content: '<span style="color: red; font-size: 30px;">哈哈哈</span>',
+          title: 'This is a title'
+        }
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+
+</html>
